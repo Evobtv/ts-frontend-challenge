@@ -1,47 +1,55 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { useEffect, useState } from 'react'
 import './App.css'
-import styled from 'styled-components';
+import LoginForm from './components/LoginForm';
+import { fetchInfo } from './services/apiService';
 
-const Button = styled.button`
-  background-color: blue;
-  color: white;
-  padding: 10px 15px;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
 
-  &:hover {
-    background-color: darkblue;
-  }
-`;
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
+  const [homeInfo, setHomeInfo] = useState({
+    subtitle: '',
+    slogan: '',
+    callAction: '',
+    logoDesktop: '',
+    logoMobile: '',
+    loginTitle: '',
+    loginForgot: '',
+    loginRegister: '',
+    loginRegisterCall: '',
+    loginCall: ''
+  });
+
+
+  useEffect(() => {
+    const getHomeInfo = async () => {
+      const data = await fetchInfo();
+      if (data) {
+        setHomeInfo({
+          subtitle: data?.texts?.subtitle,
+          slogan: data?.texts?.slogan,
+          callAction: data?.texts?.call_action,
+          logoDesktop: data?.images?.logo,
+          logoMobile: data?.images?.logo_mobile,
+          loginTitle: data?.texts?.section_login?.title,
+          loginForgot: data?.texts?.section_login?.forgot,
+          loginRegister: data?.texts?.section_login?.register,
+          loginRegisterCall: data?.texts?.section_login?.register_call,
+          loginCall: data?.texts?.section_login?.login_call,
+        });
+      }
+    }
+    getHomeInfo();
+  }, []);
+
+  setTimeout(()=>{
+    console.log(homeInfo)
+  }, 500)
+
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <Button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </Button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <LoginForm/>
     </>
   )
 }
