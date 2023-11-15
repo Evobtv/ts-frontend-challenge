@@ -1,6 +1,9 @@
 const theme = {
   colors: {
-    error: '#F56565',
+    error: {
+      300: '#ef9a9a',
+      500: '#F56565'
+    },
     gray: {
       100: '#F7FAFC',
       500: '#A0AEC0',
