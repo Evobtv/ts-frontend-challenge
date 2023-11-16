@@ -1,19 +1,25 @@
 type ErrorMsg = {
   valueMissing: string;
   typeMismatch: string;
+  tooShort: string;
+  tooLong: string;
 };
+
 const errors: ErrorMsg = {
   valueMissing: "Este campo é obrigatório.",
   typeMismatch: "Insira um e-mail válido!",
+  tooShort: "Sua senha deve ter entre 6 e 20 caracteres.",
+  tooLong: "Sua senha deve ter entre 6 e 20 caracteres.",
 };
 
 export const handleValidity = (
-  event: React.InvalidEvent<HTMLInputElement>,
+  event: React.FormEvent<HTMLInputElement>,
   callback: React.Dispatch<React.SetStateAction<string>>
 ) => {
   event.preventDefault();
 
-  const validity = event.target.validity;
+  const invalidEvent = event as unknown as React.InvalidEvent<HTMLInputElement>;
+  const validity = invalidEvent.target.validity;
 
   type ValidityKey = keyof ValidityState;
 

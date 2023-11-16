@@ -1,8 +1,10 @@
 import { useEffect, useState } from 'react';
 import { fetchInfo } from '../../services/apiService';
-import LoginForm from '../LoginForm';
+// import LoginForm from '../LoginForm';
 import Banner from '../Banner';
 import { HomeContainer } from './style';
+import NewUserForm from '../NewUserForm';
+import LoginForm from '../LoginForm';
 
 const Home = () => {
   const [homeInfo, setHomeInfo] = useState({
@@ -17,6 +19,8 @@ const Home = () => {
     loginRegisterCall: '',
     loginCall: '',
   });
+
+  const [isRegisterVisible, setIsRegisterVisible] = useState<boolean>(false);
 
   useEffect(() => {
     const getHomeInfo = async () => {
@@ -39,10 +43,6 @@ const Home = () => {
     getHomeInfo();
   }, []);
 
-  setTimeout(() => {
-    console.log(homeInfo);
-  }, 500);
-
   return (
     <HomeContainer>
       <Banner
@@ -52,13 +52,19 @@ const Home = () => {
         logoDesktop={homeInfo.logoDesktop}
         logoMobile={homeInfo.logoMobile}
       />
-      <LoginForm
-        title={homeInfo.loginTitle}
-        forgot={homeInfo.loginForgot}
-        register={homeInfo.loginRegister}
-        registerCall={homeInfo.loginRegisterCall}
-        loginCall={homeInfo.loginCall}
-      />
+
+      {isRegisterVisible ? (
+        <NewUserForm setIsRegisterVisible={setIsRegisterVisible} />
+      ) : (
+        <LoginForm
+          setIsRegisterVisible={setIsRegisterVisible}
+          title={homeInfo.loginTitle}
+          forgot={homeInfo.loginForgot}
+          register={homeInfo.loginRegister}
+          registerCall={homeInfo.loginRegisterCall}
+          loginCall={homeInfo.loginCall}
+        />
+      )}
     </HomeContainer>
   );
 };

@@ -24,6 +24,7 @@ interface LoginFormProps {
   register: string;
   registerCall: string;
   loginCall: string;
+  setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LoginForm = ({
@@ -32,6 +33,7 @@ const LoginForm = ({
   register,
   registerCall,
   loginCall,
+  setIsRegisterVisible,
 }: LoginFormProps) => {
   const [email, setEmail] = useState<string>("");
   const [password, setPassword] = useState<string>("");
@@ -70,7 +72,7 @@ const LoginForm = ({
                 value={email}
                 typeErrorMessage={emailError}
                 type={"email"}
-                placeholder="email"
+                placeholder="E-mail"
                 required
                 onChange={(e: React.InvalidEvent<HTMLInputElement>) =>
                   handleChange(e, setEmail)
@@ -104,7 +106,7 @@ const LoginForm = ({
                 value={password}
                 typeErrorMessage={passwordError}
                 type="password"
-                placeholder="senha"
+                placeholder="Senha"
                 required
                 onChange={(e: React.InvalidEvent<HTMLInputElement>) =>
                   handleChange(e, setPassword)
@@ -136,7 +138,7 @@ const LoginForm = ({
             <LoginButton type="submit">{loginCall}</LoginButton>
           </ButtonsContainer>
         </form>
-        <OptionsContainer>
+        <OptionsContainer onClick={() => setIsRegisterVisible(true)}>
           <New>{register}</New>
           <Register type="button">{registerCall}</Register>
         </OptionsContainer>
