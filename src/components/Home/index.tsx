@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchInfo } from '../../services/apiService';
 import LoginForm from '../LoginForm';
 import Banner from '../Banner';
+import { HomeContainer } from './style';
 
 const Home = () => {
   const [homeInfo, setHomeInfo] = useState({
@@ -43,7 +44,7 @@ const Home = () => {
   }, 500);
 
   return (
-    <div>
+    <HomeContainer>
       <Banner
         subtitle={homeInfo.subtitle}
         slogan={homeInfo.slogan}
@@ -58,7 +59,7 @@ const Home = () => {
         registerCall={homeInfo.loginRegisterCall}
         loginCall={homeInfo.loginCall}
       />
-    </div>
+    </HomeContainer>
   );
 };
 
