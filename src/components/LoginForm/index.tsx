@@ -3,7 +3,6 @@ import { loginUser } from '../../services/apiService';
 import {
   Container,
   Field,
-  Form,
   Input,
   InputContainer,
   Title,
@@ -64,7 +63,7 @@ const LoginForm = ({
     <Wrapper>
       <Container>
         <Title>{title}</Title>
-        <Form method="post" onSubmit={sendFormData}>
+        <form method="post" onSubmit={sendFormData}>
           <Field>
             <InputContainer typeErrorMessage={emailError}>
               <Input
@@ -136,7 +135,7 @@ const LoginForm = ({
             <ForgotButton type="button">{forgot}</ForgotButton>
             <LoginButton type="submit">{loginCall}</LoginButton>
           </ButtonsContainer>
-        </Form>
+        </form>
         <OptionsContainer>
           <New>{register}</New>
           <Register type="button">{registerCall}</Register>

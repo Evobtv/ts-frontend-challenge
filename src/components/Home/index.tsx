@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { fetchInfo } from '../../services/apiService';
 import LoginForm from '../LoginForm';
+import Banner from '../Banner';
 
-const HomeContainer = () => {
+const Home = () => {
   const [homeInfo, setHomeInfo] = useState({
     logoDesktop: '',
     slogan: '',
@@ -43,6 +44,13 @@ const HomeContainer = () => {
 
   return (
     <div>
+      <Banner
+        subtitle={homeInfo.subtitle}
+        slogan={homeInfo.slogan}
+        callAction={homeInfo.callAction}
+        logoDesktop={homeInfo.logoDesktop}
+        logoMobile={homeInfo.logoMobile}
+      />
       <LoginForm
         title={homeInfo.loginTitle}
         forgot={homeInfo.loginForgot}
@@ -54,4 +62,4 @@ const HomeContainer = () => {
   );
 };
 
-export default HomeContainer;
+export default Home;
