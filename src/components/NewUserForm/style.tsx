@@ -1,21 +1,5 @@
 import styled from "styled-components";
 
-export const Wrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-
-  @media screen and (min-width: 728px) {
-    justify-content: center;
-    align-items: center;
-  }
-`;
-
-export const Container = styled.div`
-  width: 90%;
-  max-width: 420px;
-  margin: 0 auto;
-`;
-
 export const Title = styled.h1`
   margin-bottom: 2rem;
 

@@ -1,12 +1,12 @@
 import { useState } from 'react';
 import { loginUser } from '../../services/apiService';
 import {
-  Container,
+
   Field,
   Input,
   InputContainer,
   Title,
-  Wrapper,
+
   Error,
   ButtonsContainer,
   LoginButton,
@@ -73,8 +73,7 @@ const LoginForm = ({
   };
 
   return (
-    <Wrapper>
-      <Container>
+      <>
         <Title>{title}</Title>
         <form method="post" onSubmit={sendFormData}>
           <Field>
@@ -154,8 +153,7 @@ const LoginForm = ({
           <New>{register}</New>
           <Register type="button">{registerCall}</Register>
         </OptionsContainer>
-      </Container>
-    </Wrapper>
+      </>
   );
 };
 

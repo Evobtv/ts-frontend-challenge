@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { fetchInfo } from '../../services/apiService';
 // import LoginForm from '../LoginForm';
 import Banner from '../Banner';
-import { HomeContainer } from './style';
+import { Container, HomeContainer, Wrapper } from './style';
 import NewUserForm from '../NewUserForm';
 import LoginForm from '../LoginForm';
 
@@ -52,19 +52,22 @@ const Home = () => {
         logoDesktop={homeInfo.logoDesktop}
         logoMobile={homeInfo.logoMobile}
       />
-
-      {isRegisterVisible ? (
-        <NewUserForm setIsRegisterVisible={setIsRegisterVisible} />
-      ) : (
-        <LoginForm
-          setIsRegisterVisible={setIsRegisterVisible}
-          title={homeInfo.loginTitle}
-          forgot={homeInfo.loginForgot}
-          register={homeInfo.loginRegister}
-          registerCall={homeInfo.loginRegisterCall}
-          loginCall={homeInfo.loginCall}
-        />
-      )}
+      <Wrapper>
+        <Container>
+          {isRegisterVisible ? (
+            <NewUserForm setIsRegisterVisible={setIsRegisterVisible} />
+          ) : (
+            <LoginForm
+              setIsRegisterVisible={setIsRegisterVisible}
+              title={homeInfo.loginTitle}
+              forgot={homeInfo.loginForgot}
+              register={homeInfo.loginRegister}
+              registerCall={homeInfo.loginRegisterCall}
+              loginCall={homeInfo.loginCall}
+            />
+          )}
+        </Container>
+      </Wrapper>
     </HomeContainer>
   );
 };
