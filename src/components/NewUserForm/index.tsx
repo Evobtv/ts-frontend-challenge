@@ -22,6 +22,18 @@ type NewUserFormProps = {
   setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+type ErrorMessage = {
+  fillAllFields: string;
+  passwordsDontMatch: string;
+  userRegistered: string;
+};
+
+const errorMessage: ErrorMessage = {
+  fillAllFields: 'Por favor, preencha todos os campos.',
+  passwordsDontMatch: 'A senha e a confirmação de senha não coincidem.',
+  userRegistered: 'Usuário cadastrado com sucesso!'
+};
+
 const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
@@ -36,42 +48,40 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
   const [loginMessage, setLoginMessage] = useState<string>('');
 
   useEffect(() => {
-    if (name.length > 0) {
-      setNameError('');
-    }
-    if (email.length > 0) {
-      setEmailError('');
-    }
-    if (password.length > 0) {
-      setPasswordError('');
-    }
-    if (confirmPassword.length > 0) {
-      setConfirmPasswordError('');
-    }
+    const clearError = (value: string, setError: React.Dispatch<React.SetStateAction<string>>) => {
+      if (value.length > 0) setError('');
+    };
+
+    clearError(name, setNameError);
+    clearError(email, setEmailError);
+    clearError(password, setPasswordError);
+    clearError(confirmPassword, setConfirmPasswordError);
   }, [name, email, password, confirmPassword]);
 
-  const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
-    setLoginMessage('');
-    setConfirmPasswordError('');
-
+  const isFormValid = () => {
     if (!name || !email || !password || !confirmPassword) {
-      setLoginMessage('Por favor, preencha todos os campos.');
-      return;
+      setLoginMessage(errorMessage.fillAllFields);
+      return false;
     }
 
     if (password !== confirmPassword) {
-      setConfirmPasswordError(
-        'A senha e a confirmação de senha não coincidem.',
-      );
-      return;
+      setConfirmPasswordError(errorMessage.passwordsDontMatch);
+      return false;
     }
 
-    localStorage.setItem('userEmail', email);
-    localStorage.setItem('userPassword', password);
+    return true;
+  };
 
-    setLoginMessage('Usuário cadastrado com sucesso!');
+  const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    setLoginMessage('');
+    setConfirmPasswordError('');
+
+    if (isFormValid()) {
+      localStorage.setItem('userEmail', email);
+      localStorage.setItem('userPassword', password);
+      setLoginMessage(errorMessage.userRegistered);
+    }
   };
 
   return (
