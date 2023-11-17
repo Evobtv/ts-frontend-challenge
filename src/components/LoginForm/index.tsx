@@ -54,7 +54,8 @@ const LoginForm = ({
     }
     try {
       const data = await loginUser(user);
-      const Message = data.status === "Ok" ? "Login realizado com sucesso." : "Login inválido."
+      console.log(data)
+      const Message = data.Ok ? "Login realizado com sucesso." : "Login inválido."
       setLoginMessage(Message)
     } catch (error) {
       console.error('Error during login:', error);
@@ -132,6 +133,7 @@ const LoginForm = ({
               </svg>
             </InputContainer>
             <Error>{passwordError}</Error>
+            {<LoginMessage>{loginMessage}</LoginMessage>}
           </Field>
           <ButtonsContainer>
             <ForgotButton type="button">{forgot}</ForgotButton>
@@ -143,7 +145,7 @@ const LoginForm = ({
           <Register type="button">{registerCall}</Register>
         </OptionsContainer>
       </Container>
-      {<LoginMessage>{loginMessage}</LoginMessage>}
+
     </Wrapper>
   );
 };
