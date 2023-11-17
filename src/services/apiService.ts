@@ -12,23 +12,25 @@ export const loginUser = async (
   users: UserCredentials[],
 ): Promise<LoginResult[]> => {
   const loginResults: LoginResult[] = [];
+  const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
 
   for (const user of users) {
     const { email, password } = user;
 
-    // Verificar no localStorage
-    const storedEmail = localStorage.getItem('userEmail_' + email);
-    const storedPassword = localStorage.getItem('userPassword_' + email);
 
-    if (email === storedEmail && password === storedPassword) {
+    const foundUser = storedUsers.find(
+      (storedUser: UserCredentials) =>
+        storedUser.email === email && storedUser.password === password,
+    );
+
+    if (foundUser) {
       loginResults.push({
         success: true,
         message: 'Login bem-sucedido com dados do localStorage para ' + email,
       });
-      continue;
+      continue; 
     }
 
-    // Se não estiver no localStorage, verificar na API
     const formData = new URLSearchParams();
     formData.append('email', email);
     formData.append('password', password);
@@ -44,15 +46,15 @@ export const loginUser = async (
           },
         },
       );
+      
+      const data = await response.json();
 
-      if (response.ok) {
-        // A resposta da API foi bem-sucedida
+      if (data.ok) {
         loginResults.push({
           success: true,
           message: 'Login bem-sucedido com dados da API para ' + email,
         });
       } else {
-        // Falha na resposta da API
         loginResults.push({
           success: false,
           message: 'Falha no login para ' + email,
@@ -69,6 +71,7 @@ export const loginUser = async (
 
   return loginResults;
 };
+
 
 export const fetchInfo = async () => {
   try {

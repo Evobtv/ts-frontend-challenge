@@ -75,12 +75,18 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
 
   const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    
     setLoginMessage('');
     setConfirmPasswordError('');
-
+  
     if (isFormValid()) {
-      localStorage.setItem('userEmail', email);
-      localStorage.setItem('userPassword', password);
+      const newUser = { email, password };
+      const users = JSON.parse(localStorage.getItem('users') || '[]');
+  
+      users.push(newUser);
+
+      localStorage.setItem('users', JSON.stringify(users));
+  
       setLoginMessage(errorMessage.userRegistered);
     }
   };
