@@ -34,11 +34,13 @@ Input.defaultProps = {
   $error: false
 };
 
-export const IconContainer = styled.div`
+export const IconContainer = styled.div<{ $error?: boolean }>`
   position: absolute;
   right: 0px;
   top: 50%;
   transform: translateY(-50%);
+  color: ${({ theme, $error }) =>
+    $error ? theme.colors.error[500] : 'inherit'};
 `;
 
 export const ErrorText = styled.p`

@@ -17,7 +17,7 @@ function InputInner(
     <div>
       <S.Container>
         <S.Input ref={ref} $hasIcon={!!icon} $error={error} {...props} />
-        {!!icon && <S.IconContainer>{icon}</S.IconContainer>}
+        {!!icon && <S.IconContainer $error={error}>{icon}</S.IconContainer>}
       </S.Container>
       {!!errorText && <S.ErrorText>{errorText}</S.ErrorText>}
     </div>
