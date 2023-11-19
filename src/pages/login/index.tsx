@@ -1,40 +1,53 @@
+import useFormCase from './useFormCase';
 import withAuthContainer from '../../HOC/auth';
+
 import Button from '../../components/Button';
 import { Lock, Person } from '../../components/Icons';
-import Input from '../../components/Input';
 import Text from '../../components/Text';
-import { SectionLoginTexts } from '../../interfaces/info';
+import Input from '../../components/Input';
+
 import * as S from './styles';
+import { SectionLoginTexts } from '../../interfaces/info';
 
 function LoginInner({
   sectionLoginTexts
 }: {
   sectionLoginTexts: SectionLoginTexts;
 }) {
+  const { errorMessages, handleSubmit, loading, register } = useFormCase();
+
   return (
     <div>
       <Text $variant="heading1" $weight={300}>
         {sectionLoginTexts.title}
       </Text>
 
-      <S.FormContainer>
+      <S.FormContainer onSubmit={handleSubmit}>
         <Input
-          placeholder="usuário"
+          placeholder="email"
           style={{ width: '100%' }}
           icon={<Person />}
+          {...register('email')}
+          errorText={errorMessages?.email}
+          error={!!errorMessages?.email}
         />
         <Input
           placeholder="senha"
           type="password"
           style={{ width: '100%' }}
           icon={<Lock />}
+          {...register('password')}
+          errorText={errorMessages?.password}
+          error={!!errorMessages?.password}
         />
 
         <S.ButtonActionContainer>
           <S.ForgotPasswordLink href="/login">
             Esqueceu sua senha ?!
           </S.ForgotPasswordLink>
-          <Button type="submit">Entrar</Button>
+          <Button type="submit" disabled={loading} $fullWidth>
+            Entrar
+          </Button>
         </S.ButtonActionContainer>
       </S.FormContainer>
 
