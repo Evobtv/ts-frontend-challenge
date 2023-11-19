@@ -23,27 +23,47 @@ const Home = () => {
   const [isRegisterVisible, setIsRegisterVisible] = useState<boolean>(false);
   const [isPasswordResetVisible, setIsPasswordResetVisible] = useState<boolean>(false);
 
-
   useEffect(() => {
-    const getHomeInfo = async () => {
+    const loadHomeInfo = async () => {
       const data = await fetchInfo();
-      if (data) {
-        setHomeInfo({
-          logoDesktop: data?.images?.logo,
-          slogan: data?.texts?.slogan,
-          subtitle: data?.texts?.subtitle,
-          callAction: data?.texts?.call_action,
-          logoMobile: data?.images?.logo_mobile,
-          loginTitle: data?.texts?.section_login?.title,
-          loginForgot: data?.texts?.section_login?.forgot,
-          loginRegister: data?.texts?.section_login?.register,
-          loginRegisterCall: data?.texts?.section_login?.register_call,
-          loginCall: data?.texts?.section_login?.login_call,
-        });
-      }
+      setHomeInfo(data ? {
+        logoDesktop: data.images?.logo,
+        slogan: data.texts?.slogan,
+        subtitle: data.texts?.subtitle,
+        callAction: data.texts?.call_action,
+        logoMobile: data.images?.logo_mobile,
+        loginTitle: data.texts?.section_login?.title,
+        loginForgot: data.texts?.section_login?.forgot,
+        loginRegister: data.texts?.section_login?.register,
+        loginRegisterCall: data.texts?.section_login?.register_call,
+        loginCall: data.texts?.section_login?.login_call,
+      } : homeInfo);
     };
-    getHomeInfo();
+
+    loadHomeInfo();
   }, []);
+
+  const renderForm = () => {
+    if (isPasswordResetVisible) {
+      return <PasswordResetForm setIsPasswordResetVisible={setIsPasswordResetVisible}/>;
+    }
+
+    if (isRegisterVisible) {
+      return <NewUserForm setIsRegisterVisible={setIsRegisterVisible} />;
+    }
+
+    return (
+      <LoginForm
+        setIsPasswordResetVisible={setIsPasswordResetVisible}
+        setIsRegisterVisible={setIsRegisterVisible}
+        title={homeInfo.loginTitle}
+        forgot={homeInfo.loginForgot}
+        register={homeInfo.loginRegister}
+        registerCall={homeInfo.loginRegisterCall}
+        loginCall={homeInfo.loginCall}
+      />
+    );
+  };
 
   return (
     <HomeContainer>
@@ -56,21 +76,7 @@ const Home = () => {
       />
       <Wrapper>
         <Container>
-          {isPasswordResetVisible ? (
-            <PasswordResetForm setIsPasswordResetVisible={setIsPasswordResetVisible}/>
-          ) : isRegisterVisible ? (
-            <NewUserForm setIsRegisterVisible={setIsRegisterVisible} />
-          ) : (
-            <LoginForm
-              setIsPasswordResetVisible={setIsPasswordResetVisible}
-              setIsRegisterVisible={setIsRegisterVisible}
-              title={homeInfo.loginTitle}
-              forgot={homeInfo.loginForgot}
-              register={homeInfo.loginRegister}
-              registerCall={homeInfo.loginRegisterCall}
-              loginCall={homeInfo.loginCall}
-            />
-          )}
+          {renderForm()}
         </Container>
       </Wrapper>
     </HomeContainer>
