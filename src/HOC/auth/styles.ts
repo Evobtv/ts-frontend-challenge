@@ -20,6 +20,13 @@ export const AuthContainer = styled.div`
   grid-template-columns: 1fr 1fr;
   height: 100vh;
   height: 100dvh;
+
+  @media (max-width: 768px) {
+    display: flex;
+    flex-direction: column;
+    gap: 76px;
+    padding-top: 44px;
+  }
 `;
 
 export const InfoContainer = styled.div`
@@ -41,4 +48,24 @@ export const InfoTextsContainer = styled.div`
   flex-direction: column;
   gap: 24px;
   margin-top: 32px;
+`;
+
+export const LogoContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;
+
+export const ContentWrapper = styled.div`
+  padding: 0 28px;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+`;
+
+export const ContentWrapperMaxWidth = styled.div`
+  max-width: 320px;
+  margin: 0 auto;
 `;

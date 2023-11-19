@@ -1,9 +1,11 @@
 import { SectionLoginTexts } from '../../interfaces/info';
 
+import { useMediaQuery } from '../../hooks/useMediaQuery';
+import useInfo from './useInfo';
+
 import * as S from './styles';
 import Text from '../../components/Text';
 import Feedback from '../../components/Feedback';
-import useInfo from './useInfo';
 
 export type ConsumerComponent = ({
   sectionLoginTexts
@@ -14,6 +16,7 @@ export type ConsumerComponent = ({
 export const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
   return () => {
     const { data: infoData, error, loading } = useInfo();
+    const isTablet = useMediaQuery('(max-width: 768px)');
 
     if (loading) {
       return (
@@ -38,31 +41,43 @@ export const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
 
     return (
       <S.AuthContainer>
-        <S.InfoContainer>
-          <S.InfoWrapperMaxWidth>
-            <img src={infoData.images.logo} alt="logo" width={200} />
-            <S.InfoTextsContainer>
-              <Text $variant="heading2" $color="secondary">
-                {infoData.texts.subtitle}
-              </Text>
-              <Text
-                $variant="heading2"
-                component="p"
-                $color="secondary"
-                $weight={300}
-              >
-                {infoData.texts.slogan}
-              </Text>
-              <Text $variant="heading2" $color="secondary" component="p">
-                {infoData.texts.call_action}
-              </Text>
-            </S.InfoTextsContainer>
-          </S.InfoWrapperMaxWidth>
-        </S.InfoContainer>
+        {!isTablet ? (
+          <S.InfoContainer>
+            <S.InfoWrapperMaxWidth>
+              <img src={infoData.images.logo} alt="logo" width={200} />
+              <S.InfoTextsContainer>
+                <Text $variant="heading2" $color="secondary">
+                  {infoData.texts.subtitle}
+                </Text>
+                <Text
+                  $variant="heading2"
+                  component="p"
+                  $color="secondary"
+                  $weight={300}
+                >
+                  {infoData.texts.slogan}
+                </Text>
+                <Text $variant="heading2" $color="secondary" component="p">
+                  {infoData.texts.call_action}
+                </Text>
+              </S.InfoTextsContainer>
+            </S.InfoWrapperMaxWidth>
+          </S.InfoContainer>
+        ) : (
+          <S.LogoContainer>
+            <img src={infoData.images.logo_mobile} alt="logo" width={200} />
+          </S.LogoContainer>
+        )}
 
-        <WrappedComponent
-          sectionLoginTexts={infoData.texts.section_login as SectionLoginTexts}
-        />
+        <S.ContentWrapper>
+          <S.ContentWrapperMaxWidth>
+            <WrappedComponent
+              sectionLoginTexts={
+                infoData.texts.section_login as SectionLoginTexts
+              }
+            />
+          </S.ContentWrapperMaxWidth>
+        </S.ContentWrapper>
       </S.AuthContainer>
     );
   };
