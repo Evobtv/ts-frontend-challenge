@@ -13,7 +13,7 @@ export type ConsumerComponent = ({
   sectionLoginTexts: SectionLoginTexts;
 }) => JSX.Element;
 
-export const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
+const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
   return () => {
     const { data: infoData, error, loading } = useInfo();
     const isTablet = useMediaQuery('(max-width: 768px)');
@@ -82,3 +82,5 @@ export const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
     );
   };
 };
+
+export default withAuthContainer;

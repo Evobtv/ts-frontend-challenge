@@ -58,14 +58,18 @@ export const LogoContainer = styled.div`
 
 export const ContentWrapper = styled.div`
   padding: 0 28px;
-  height: 100%;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  @media (min-width: 768px) {
+    height: 100%;
+  }
 `;
 
 export const ContentWrapperMaxWidth = styled.div`
   max-width: 320px;
+  width: 100%;
   margin: 0 auto;
 `;
