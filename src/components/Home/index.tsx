@@ -1,8 +1,8 @@
 import { useEffect, useState } from 'react';
 import { fetchInfo } from '../../services/apiService';
-// import LoginForm from '../LoginForm';
 import Banner from '../Banner';
 import { Container, HomeContainer, Wrapper } from './style';
+import PasswordResetForm from '../PasswordResetForm';
 import NewUserForm from '../NewUserForm';
 import LoginForm from '../LoginForm';
 
@@ -21,6 +21,8 @@ const Home = () => {
   });
 
   const [isRegisterVisible, setIsRegisterVisible] = useState<boolean>(false);
+  const [isPasswordResetVisible, setIsPasswordResetVisible] = useState<boolean>(false);
+
 
   useEffect(() => {
     const getHomeInfo = async () => {
@@ -54,10 +56,13 @@ const Home = () => {
       />
       <Wrapper>
         <Container>
-          {isRegisterVisible ? (
+          {isPasswordResetVisible ? (
+            <PasswordResetForm setIsPasswordResetVisible={setIsPasswordResetVisible}/>
+          ) : isRegisterVisible ? (
             <NewUserForm setIsRegisterVisible={setIsRegisterVisible} />
           ) : (
             <LoginForm
+              setIsPasswordResetVisible={setIsPasswordResetVisible}
               setIsRegisterVisible={setIsRegisterVisible}
               title={homeInfo.loginTitle}
               forgot={homeInfo.loginForgot}

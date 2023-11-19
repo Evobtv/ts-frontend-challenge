@@ -25,7 +25,7 @@ export const handleValidity = (
 
   for (const key in validity) {
     if (validity[key as ValidityKey]) {
-      // Verifica se a chave existe no tipo ErrorMessages
+
       if (key in errors) {
         const errorKey = key as keyof ErrorMsg;
         callback(errors[errorKey]);

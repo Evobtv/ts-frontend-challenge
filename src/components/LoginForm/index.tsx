@@ -23,6 +23,7 @@ interface LoginFormProps {
   registerCall: string;
   loginCall: string;
   setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
+  setIsPasswordResetVisible: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 const LoginForm = ({
@@ -32,6 +33,7 @@ const LoginForm = ({
   registerCall,
   loginCall,
   setIsRegisterVisible,
+  setIsPasswordResetVisible,
 }: LoginFormProps) => {
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
@@ -146,7 +148,7 @@ const LoginForm = ({
           {<LoginMessage>{loginMessage}</LoginMessage>}
         </Field>
         <ButtonsContainer>
-          <ForgotButton type="button">{forgot}</ForgotButton>
+          <ForgotButton type="button" onClick={() => setIsPasswordResetVisible(true)}>{forgot}</ForgotButton>
           <LoginButton type="submit">{loginCall}</LoginButton>
         </ButtonsContainer>
       </form>
