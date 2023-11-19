@@ -43,9 +43,7 @@ const LoginForm = ({
   const [loginMessage, setLoginMessage] = useState<string>('');
 
 
-  const sendFormData = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-
+  const handleLogin = async () => {
     const users = [
       {
         email,
@@ -57,23 +55,28 @@ const LoginForm = ({
       const results = await loginUser(users);
       const firstResult = results[0];
 
-      if (firstResult && firstResult.success) {
+      if (firstResult?.success) {
         setLoginMessage('Login realizado com sucesso.');
       } else {
-        setLoginMessage(
-          'Login inválido. Por favor, verifique suas credenciais.',
-        );
+        setLoginMessage('Login inválido. Por favor, verifique suas credenciais.');
       }
+      
     } catch (error) {
       console.error('Error during login:', error);
+
       setLoginMessage('Ocorreu um erro ao tentar fazer login.');
     }
+  };
+
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleLogin();
   };
 
   return (
     <>
       <Title>{title}</Title>
-      <form method="post" onSubmit={sendFormData}>
+      <form method="post" onSubmit={handleSubmit}>
         <Field>
           <InputContainer typeErrorMessage={emailError}>
             <Input
