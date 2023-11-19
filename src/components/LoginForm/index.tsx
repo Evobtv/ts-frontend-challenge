@@ -15,6 +15,7 @@ import {
   LoginMessage,
 } from './style';
 import { handleValidity } from '../utils/ValidationForm';
+import { updateInputValue } from '../utils/HandleChange';
 
 interface LoginFormProps {
   title: string;
@@ -41,12 +42,6 @@ const LoginForm = ({
   const [passwordError, setPasswordError] = useState<string>('');
   const [loginMessage, setLoginMessage] = useState<string>('');
 
-  const handleChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
-    callback: React.Dispatch<React.SetStateAction<string>>,
-  ) => {
-    callback(event.target.value);
-  };
 
   const sendFormData = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -88,7 +83,7 @@ const LoginForm = ({
               placeholder="E-mail"
               required
               onChange={(e: React.InvalidEvent<HTMLInputElement>) =>
-                handleChange(e, setEmail)
+                updateInputValue(e, setEmail)
               }
               onInvalid={(e: React.InvalidEvent<HTMLInputElement>) =>
                 handleValidity(e, setEmailError)
@@ -121,10 +116,10 @@ const LoginForm = ({
               type="password"
               placeholder="Senha"
               required
-              onChange={(e: React.InvalidEvent<HTMLInputElement>) =>
-                handleChange(e, setPassword)
+              onChange={(e) =>
+                updateInputValue(e, setPassword)
               }
-              onInvalid={(e: React.InvalidEvent<HTMLInputElement>) =>
+              onInvalid={(e) =>
                 handleValidity(e, setPasswordError)
               }
             />

@@ -76,19 +76,27 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
   const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     
-    setLoginMessage('');
-    setConfirmPasswordError('');
-  
-    if (isFormValid()) {
-      const newUser = { email, password };
-      const users = JSON.parse(localStorage.getItem('users') || '[]');
-  
-      users.push(newUser);
-
-      localStorage.setItem('users', JSON.stringify(users));
-  
-      setLoginMessage(errorMessage.userRegistered);
+    if (!isFormValid()) {
+      return;
     }
+  
+    const usersData = localStorage.getItem('users');
+    const users = usersData ? JSON.parse(usersData) : [];
+  
+
+    const emailExists = users.some((user: { email: string; }) => user.email === email);
+  
+    if (emailExists) {
+      setEmailError('E-mail já cadastrado.');
+      return;
+    }
+  
+
+    const newUser = { email, password };
+    users.push(newUser);
+    localStorage.setItem('users', JSON.stringify(users));
+  
+    setLoginMessage(errorMessage.userRegistered);
   };
 
   return (
