@@ -3,15 +3,15 @@ import {
   Input,
   Button,
   Message,
-  InputContainer,
-  Field,
-  Title,
   ButtonsContainer,
   ButtonReturnLogin,
   OptionsContainer,
 } from './style';
 import { handleValidity } from '../utils/ValidationForm';
 import { updateInputValue } from '../utils/HandleChange';
+import FieldComponent from '../FieldComponent';
+import TitleComponent from '../TittleComponent';
+import InputContainerComponent from '../InputContainerComponent';
 
 interface PasswordResetFormProps {
   setIsPasswordResetVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -41,10 +41,10 @@ const PasswordResetForm = ({setIsPasswordResetVisible}:PasswordResetFormProps) =
 
   return (
     <>
-      <Title>Redefinir a senha</Title>
+      <TitleComponent>Redefinir a senha</TitleComponent>
       <form method="post" onSubmit={handleResetPassword}>
-        <Field>
-          <InputContainer typeErrorMessage={emailError}>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={emailError}>
             <Input
               value={email}
               typeErrorMessage={emailError}
@@ -69,9 +69,9 @@ const PasswordResetForm = ({setIsPasswordResetVisible}:PasswordResetFormProps) =
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           {message && <Message>{message}</Message>}
-        </Field>
+        </FieldComponent>
         <ButtonsContainer>
           <Button type="submit">Redefinir senha</Button>
         </ButtonsContainer>

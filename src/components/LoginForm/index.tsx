@@ -1,10 +1,7 @@
 import { useState } from 'react';
 import { loginUser } from '../../services/apiService';
 import {
-  Field,
   Input,
-  InputContainer,
-  Title,
   Error,
   ButtonsContainer,
   LoginButton,
@@ -16,6 +13,9 @@ import {
 } from './style';
 import { handleValidity } from '../utils/ValidationForm';
 import { updateInputValue } from '../utils/HandleChange';
+import FieldComponent from '../FieldComponent';
+import TitleComponent from '../TittleComponent';
+import InputContainerComponent from '../InputContainerComponent';
 
 interface LoginFormProps {
   title: string;
@@ -60,7 +60,7 @@ const LoginForm = ({
       } else {
         setLoginMessage('Login inválido. Por favor, verifique suas credenciais.');
       }
-      
+
     } catch (error) {
       console.error('Error during login:', error);
 
@@ -75,10 +75,10 @@ const LoginForm = ({
 
   return (
     <>
-      <Title>{title}</Title>
+      <TitleComponent>{title}</TitleComponent>
       <form method="post" onSubmit={handleSubmit}>
-        <Field>
-          <InputContainer typeErrorMessage={emailError}>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={emailError}>
             <Input
               value={email}
               typeErrorMessage={emailError}
@@ -107,12 +107,12 @@ const LoginForm = ({
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           <Error>{emailError}</Error>
-        </Field>
+        </FieldComponent>
 
-        <Field>
-          <InputContainer typeErrorMessage={passwordError}>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={passwordError}>
             <Input
               value={password}
               typeErrorMessage={passwordError}
@@ -141,10 +141,10 @@ const LoginForm = ({
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           <Error>{passwordError}</Error>
           {<LoginMessage>{loginMessage}</LoginMessage>}
-        </Field>
+        </FieldComponent>
         <ButtonsContainer>
           <ForgotButton type="button" onClick={() => setIsPasswordResetVisible(true)}>{forgot}</ForgotButton>
           <LoginButton type="submit">{loginCall}</LoginButton>

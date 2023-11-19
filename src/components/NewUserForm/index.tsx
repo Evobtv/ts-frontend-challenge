@@ -1,9 +1,6 @@
 import { useState, useEffect } from 'react';
 import {
-  Field,
   Input,
-  InputContainer,
-  Title,
   Error,
   ButtonsContainer,
   LoginButton,
@@ -15,6 +12,9 @@ import {
 
 import { handleValidity } from '../utils/ValidationForm';
 import { updateInputValue } from '../utils/HandleChange';
+import FieldComponent from '../FieldComponent';
+import TitleComponent from '../TittleComponent';
+import InputContainerComponent from '../InputContainerComponent';
 
 type NewUserFormProps = {
   setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -101,10 +101,10 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
 
   return (
     <>
-      <Title>Criar nova conta</Title>
+      <TitleComponent>Criar nova conta</TitleComponent>
       <form method="post" onSubmit={handleRegistration}>
-        <Field>
-          <InputContainer typeErrorMessage={nameError}>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={nameError}>
             <Input
               value={name}
               required
@@ -129,11 +129,11 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           <Error>{nameError}</Error>
-        </Field>
-        <Field>
-          <InputContainer typeErrorMessage={emailError}>
+        </FieldComponent>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={emailError}>
             <Input
               type="email"
               value={email}
@@ -158,12 +158,12 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           <Error>{emailError}</Error>
-        </Field>
+        </FieldComponent>
 
-        <Field>
-          <InputContainer typeErrorMessage={passwordError}>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={passwordError}>
             <Input
               value={password}
               type="password"
@@ -190,11 +190,11 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           <Error>{passwordError}</Error>
-        </Field>
-        <Field>
-          <InputContainer typeErrorMessage={confirmPasswordError}>
+        </FieldComponent>
+        <FieldComponent>
+          <InputContainerComponent typeErrorMessage={confirmPasswordError}>
             <Input
               required
               type="password"
@@ -221,9 +221,9 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
                 strokeLinejoin="round"
               />
             </svg>
-          </InputContainer>
+          </InputContainerComponent>
           <Error>{confirmPasswordError}</Error>
-        </Field>
+        </FieldComponent>
         <ButtonsContainer>
           <LoginButton
             type="submit"
