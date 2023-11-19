@@ -7,10 +7,10 @@ function LoginInner({
   sectionLoginTexts: SectionLoginTexts;
 }) {
   return (
-    <>
+    <div>
       login
       {sectionLoginTexts.title}
-    </>
+    </div>
   );
 }
 

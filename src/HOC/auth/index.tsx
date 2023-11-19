@@ -60,11 +60,33 @@ export const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
     }
 
     return (
-      <div>
+      <S.AuthContainer>
+        <S.InfoContainer>
+          <S.InfoWrapperMaxWidth>
+            <img src={infoData.images.logo} alt="logo" width={200} />
+            <S.InfoTextsContainer>
+              <Text $variant="heading2" $color="secondary">
+                {infoData.texts.subtitle}
+              </Text>
+              <Text
+                $variant="heading2"
+                component="p"
+                $color="secondary"
+                $weight={300}
+              >
+                {infoData.texts.slogan}
+              </Text>
+              <Text $variant="heading2" $color="secondary" component="p">
+                {infoData.texts.call_action}
+              </Text>
+            </S.InfoTextsContainer>
+          </S.InfoWrapperMaxWidth>
+        </S.InfoContainer>
+
         <WrappedComponent
           sectionLoginTexts={infoData.texts.section_login as SectionLoginTexts}
         />
-      </div>
+      </S.AuthContainer>
     );
   };
 };

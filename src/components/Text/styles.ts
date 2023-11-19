@@ -4,7 +4,7 @@ import theme from '../../styles/theme';
 
 const fontSizeByVariant: Record<TextVariant, string> = {
   heading1: '3.6rem',
-  heading2: '2.8rem',
+  heading2: '2.4rem',
   body1: '1.6rem',
   body2: '1.4rem',
   body3: '1.2rem'
