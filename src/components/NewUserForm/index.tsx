@@ -46,26 +46,26 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
   const [loginMessage, setLoginMessage] = useState<string>('');
 
   useEffect(() => {
-    const clearError = (
-      value: string,
-      setError: React.Dispatch<React.SetStateAction<string>>,
-    ) => {
-      if (value.length > 0) setError('');
-    };
-
-    clearError(name, setNameError);
-    clearError(email, setEmailError);
-    clearError(password, setPasswordError);
-    clearError(confirmPassword, setConfirmPasswordError);
+    clearErrors();
   }, [name, email, password, confirmPassword]);
 
-  const isFormValid = () => {
-    if (!name || !email || !password || !confirmPassword) {
+  const clearErrors = () => {
+    setNameError(name ? '' : nameError);
+    setEmailError(email ? '' : emailError);
+    setPasswordError(password ? '' : passwordError);
+    setConfirmPasswordError(confirmPassword ? '' : confirmPasswordError);
+  };
+
+  const validateForm = () => {
+    const isFieldEmpty = !name || !email || !password || !confirmPassword;
+    const doPasswordsMatch = password === confirmPassword;
+
+    if (isFieldEmpty) {
       setLoginMessage(errorMessage.fillAllFields);
       return false;
     }
 
-    if (password !== confirmPassword) {
+    if (!doPasswordsMatch) {
       setConfirmPasswordError(errorMessage.passwordsDontMatch);
       return false;
     }
@@ -75,27 +75,27 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
 
   const handleRegistration = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (!isFormValid()) {
+
+    if (!validateForm()) {
       return;
     }
-  
+
     const usersData = localStorage.getItem('users');
     const users = usersData ? JSON.parse(usersData) : [];
-  
 
-    const emailExists = users.some((user: { email: string; }) => user.email === email);
-  
+    const emailExists = users.some(
+      (user: { email: string }) => user.email === email,
+    );
+
     if (emailExists) {
       setEmailError('E-mail já cadastrado.');
       return;
     }
-  
 
     const newUser = { email, password };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
-  
+
     setLoginMessage(errorMessage.userRegistered);
   };
 
