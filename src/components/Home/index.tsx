@@ -5,6 +5,7 @@ import { Container, HomeContainer, Wrapper } from './style';
 import PasswordResetForm from '../PasswordResetForm';
 import NewUserForm from '../NewUserForm';
 import LoginForm from '../LoginForm';
+import WhatsappPopUp from '../WhatsappPopUp';
 
 const Home = () => {
   const [homeInfo, setHomeInfo] = useState({
@@ -79,6 +80,7 @@ const Home = () => {
           {renderForm()}
         </Container>
       </Wrapper>
+      <WhatsappPopUp/>
     </HomeContainer>
   );
 };
