@@ -1,28 +1,21 @@
 import { useState } from 'react';
-import { useForm } from '../../hooks/useForm';
-import { login } from '../../services/requests';
-import { LoginResponse } from '../../interfaces/login';
+import { useForm } from '../../../hooks/useForm';
+
+import { login } from '../../../services/requests';
+import { LoginResponse } from '../../../interfaces/login';
+import { LoginForm } from '../types';
+import validations from '../validations';
 
 const useFormCase = () => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
 
-  const { errorMessages, register, handleSubmit } = useForm({
+  const { errorMessages, register, handleSubmit } = useForm<LoginForm>({
     initialState: {
       email: '',
       password: ''
     },
-    validations: {
-      email: name => {
-        if (!name.trim()) return 'O email de usuário é obrigatório';
-        const regex =
-          /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?(?:\.[a-zA-Z0-9](?:[a-zA-Z0-9-]{0,61}[a-zA-Z0-9])?)*$/;
-        if (!regex.test(name)) return 'Insira um e-mail válido';
-      },
-      password: password => {
-        if (!password.trim()) return 'A senha é obrigatória';
-      }
-    }
+    validations
   });
 
   const handleSubmitForm = handleSubmit(async data => {
