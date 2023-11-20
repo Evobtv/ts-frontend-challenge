@@ -35,7 +35,7 @@ export const Button = styled.button<ButtonProps>`
 
   &:disabled {
     cursor: default;
-    opacity: 0.8;
+    opacity: 0.5;
   }
 
   &:hover {

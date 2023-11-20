@@ -29,6 +29,9 @@ export const ForgotPasswordLink = styled.a`
 
 export const SignUpContainer = styled.div`
   margin-top: 32px;
+  @media (max-width: 768px) {
+    margin-top: 123px;
+  }
 `;
 
 export const SignUpLink = styled.a`
@@ -44,4 +47,29 @@ export const SignUpLink = styled.a`
   &:hover {
     color: ${props => props.theme.colors.gray[700]};
   }
+`;
+
+export const ErroContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  padding: 16px;
+  margin: 32px 0;
+
+  background-color: ${props => props.theme.colors.error[300]};
+  color: ${props => props.theme.colors.gray[800]};
+  border: 2px solid ${props => props.theme.colors.error[500]};
+
+  @keyframes grow {
+    0% {
+      opacity: 0;
+      transform: scale(0.5);
+    }
+    100% {
+      opacity: 1;
+      transform: scale(1);
+    }
+  }
+
+  animation: grow 300ms ease;
 `;

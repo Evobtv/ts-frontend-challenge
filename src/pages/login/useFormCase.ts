@@ -5,6 +5,7 @@ import { LoginResponse } from '../../interfaces/login';
 
 const useFormCase = () => {
   const [loading, setLoading] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
   const { errorMessages, register, handleSubmit } = useForm({
     initialState: {
@@ -25,6 +26,7 @@ const useFormCase = () => {
   });
 
   const handleSubmitForm = handleSubmit(async data => {
+    setError(null);
     const formData = new FormData();
     formData.append('email', data.email);
     formData.append('password', data.password);
@@ -37,9 +39,12 @@ const useFormCase = () => {
 
       if (data.Ok) {
         window.location.href = '/profile';
+      } else {
+        setError(data?.Error || 'Ocorreu um erro inesperado');
       }
     } catch (error) {
       console.log(error);
+      setError('Ocorreu um erro inesperado');
     } finally {
       setLoading(false);
     }
@@ -49,7 +54,8 @@ const useFormCase = () => {
     loading,
     errorMessages,
     register,
-    handleSubmit: handleSubmitForm
+    handleSubmit: handleSubmitForm,
+    error
   };
 };
 

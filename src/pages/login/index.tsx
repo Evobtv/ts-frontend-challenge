@@ -14,13 +14,23 @@ function LoginInner({
 }: {
   sectionLoginTexts: SectionLoginTexts;
 }) {
-  const { errorMessages, handleSubmit, loading, register } = useFormCase();
+  const { errorMessages, handleSubmit, loading, register, error } =
+    useFormCase();
 
   return (
     <div>
       <Text $variant="heading1" $weight={300}>
         {sectionLoginTexts.title}
       </Text>
+
+      {!!error && (
+        <S.ErroContainer>
+          <Text $variant="body1" $weight={600}>
+            Error
+          </Text>
+          <Text $variant="body1">{error}</Text>
+        </S.ErroContainer>
+      )}
 
       <S.FormContainer onSubmit={handleSubmit}>
         <Input
