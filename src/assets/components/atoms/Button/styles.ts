@@ -1,6 +1,6 @@
 import styled, {css, keyframes } from 'styled-components';
 import { BasicButtonProps  } from './types';
-import theme from '../../../assets/styles/themes/variables';
+import theme from '../../../styles/themes/variables';
 
 export const Button = styled.button<BasicButtonProps >`
     display: flex;
