@@ -1,10 +1,11 @@
 import { useState } from 'react';
 
-type ValidationFn<T> = (value: keyof T) => string | undefined;
+export type ValidationFn<T> = (value: keyof T, fields: T) => string | undefined;
+export type Validations<T> = Partial<Record<keyof T, ValidationFn<T>>>;
 
-interface UseFormProps<T> {
+export interface UseFormProps<T> {
   initialState: T;
-  validations: Partial<Record<keyof T, ValidationFn<T>>>;
+  validations: Validations<T>;
 }
 
 export const useForm = <T>({ initialState, validations }: UseFormProps<T>) => {
@@ -16,7 +17,7 @@ export const useForm = <T>({ initialState, validations }: UseFormProps<T>) => {
   const validateField = (value: keyof T, name: keyof T) => {
     if (!validations || !validations[name]) return;
 
-    const error = (validations[name] as ValidationFn<T>)(value);
+    const error = (validations[name] as ValidationFn<T>)(value, fields);
     setErrorMessages(prev => ({
       ...prev,
       [name]: error

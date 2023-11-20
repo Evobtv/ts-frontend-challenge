@@ -72,9 +72,7 @@ const withAuthContainer = (WrappedComponent: ConsumerComponent) => {
         <S.ContentWrapper>
           <S.ContentWrapperMaxWidth>
             <WrappedComponent
-              sectionLoginTexts={
-                infoData.texts.section_login as SectionLoginTexts
-              }
+              sectionLoginTexts={infoData.texts.section_login}
             />
           </S.ContentWrapperMaxWidth>
         </S.ContentWrapper>

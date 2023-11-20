@@ -53,19 +53,21 @@ function LoginInner({
 
         <S.ButtonActionContainer>
           <S.ForgotPasswordLink href="/login">
-            Esqueceu sua senha ?!
+            {sectionLoginTexts.forgot}
           </S.ForgotPasswordLink>
           <Button type="submit" disabled={loading} $fullWidth>
-            Entrar
+            {loading ? 'Carregando' : sectionLoginTexts.login_call}
           </Button>
         </S.ButtonActionContainer>
       </S.FormContainer>
 
       <S.SignUpContainer>
         <Text $variant="body2" $align="center">
-          Ainda não tem uma conta?
+          {sectionLoginTexts.register}
         </Text>
-        <S.SignUpLink href="/signup">Cadastre-se</S.SignUpLink>
+        <S.SignUpLink href="/signup">
+          {sectionLoginTexts.register_call}
+        </S.SignUpLink>
       </S.SignUpContainer>
     </div>
   );
