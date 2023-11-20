@@ -6,6 +6,7 @@ export const HomeContainer = styled.section`
   grid-template-columns: 1fr;
 
   min-height: 100vh;
+  overflow-x: hidden;
 
   @media screen and (min-width: 728px) {
     grid-template-columns: 1fr 1fr;
@@ -14,10 +15,13 @@ export const HomeContainer = styled.section`
 export const Wrapper = styled.div`
   display: flex;
   flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
 
   @media screen and (min-width: 728px) {
-    justify-content: center;
     align-items: center;
+    justify-content: center;
   }
 `;
 

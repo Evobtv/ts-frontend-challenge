@@ -45,8 +45,9 @@ export const ButtonsContainer = styled.div`
 
 export const LoginButton = styled.button`
   display: block;
-
+  width: 50%;
   padding: 10px 2rem;
+
 
   background-color: #2d3748;
   border: 0;
@@ -59,8 +60,8 @@ export const LoginButton = styled.button`
 
 export const ForgotButton = styled.button`
   display: block;
-
-  border: 0;
+  
+  border: none;
   background-color: transparent;
 
   text-decoration: underline;
