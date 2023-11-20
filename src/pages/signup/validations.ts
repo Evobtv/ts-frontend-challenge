@@ -13,6 +13,8 @@ const validations: Validations<SignUpForm> = {
   },
   password: password => {
     if (!password) return 'A senha é obrigatória';
+    if (password.length < 6 || password.length > 20)
+      return 'Sua senha deve ter entre 6 e 20 caracteres.';
   },
   confirmPassword: (confirm, { password }) => {
     if (confirm !== password) return 'As senhas precisam ser iguais';
