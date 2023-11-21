@@ -1,7 +1,7 @@
 import config from '../../config.json'
 
 interface LoginData {
-  user: string;
+  mail: string;
   pass: string;
 }
 
@@ -11,7 +11,7 @@ const authStore = {
   login: (data: LoginData): Promise<Response> => {
 
     const credentialsEncoded = new URLSearchParams();
-    credentialsEncoded.append("email", data.user);
+    credentialsEncoded.append("email", data.mail);
     credentialsEncoded.append("password", data.pass);
 
     return new Promise((resolve, reject) => {
