@@ -2,7 +2,13 @@ import React, { useState, useEffect } from 'react';
 import infoStore from '../../api/infoStore';
 import backgroundImage from '../../assets/images/background.png';
 import * as S from './styles';
-import UserLogin from '../../components/organisms/UserLogin/UserLogin';
+import UserLogin from '../../assets/components/organisms/UserLogin/index';
+
+const LoadingOverlay: React.FC = () => (
+  <S.LoadingOverlay>
+    <S.LoadingSpinner />
+  </S.LoadingOverlay>
+);
 
 const Login: React.FC = () => {
   const [loginPageInfo, setLoginPageInfo] = useState({
@@ -58,7 +64,7 @@ const Login: React.FC = () => {
   }, []);
 
   if (loading) {
-    return <div>Carregando...</div>;
+    return <LoadingOverlay />;
   }
 
   return (
