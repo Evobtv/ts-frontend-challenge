@@ -11,6 +11,19 @@ export const HomeContainer = styled.section`
   @media screen and (min-width: 728px) {
     grid-template-columns: 1fr 1fr;
   }
+
+  @keyframes smoothOpacityChange {
+    from {
+      opacity: 0.3;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+  
+  * {
+    animation: smoothOpacityChange 0.4s ease-in-out;
+  }
 `;
 export const Wrapper = styled.div`
   display: flex;

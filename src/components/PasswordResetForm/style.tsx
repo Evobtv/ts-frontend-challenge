@@ -80,6 +80,14 @@ export const ButtonReturnLogin = styled.button`
   }
 `;
 
+export const Error = styled.p`
+  color: ${({ theme }) => theme.colors.erroMessage};
+  font-size: 1rem;
+
+  position: absolute;
+  bottom: -1.75rem;
+`;
+
 export const OptionsContainer = styled.div`
   display: flex;
 

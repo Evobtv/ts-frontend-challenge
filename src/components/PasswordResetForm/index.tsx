@@ -4,6 +4,7 @@ import {
   Message,
   ButtonsContainer,
   OptionsContainer,
+  Error,
 } from './style';
 import { handleValidity } from '../utils/ValidationForm';
 import { updateInputValue } from '../utils/HandleChange';
@@ -61,6 +62,7 @@ const PasswordResetForm = ({
             />
             <EmailIcon color={emailError ? '#F56565' : '#4A5568'} />
           </InputContainerComponent>
+          <Error>{emailError}</Error>
           {message && <Message>{message}</Message>}
         </FieldComponent>
         <ButtonsContainer>

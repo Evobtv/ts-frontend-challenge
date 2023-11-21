@@ -22,23 +22,28 @@ const Home = () => {
   });
 
   const [isRegisterVisible, setIsRegisterVisible] = useState<boolean>(false);
-  const [isPasswordResetVisible, setIsPasswordResetVisible] = useState<boolean>(false);
+  const [isPasswordResetVisible, setIsPasswordResetVisible] =
+    useState<boolean>(false);
 
   useEffect(() => {
     const loadHomeInfo = async () => {
       const data = await fetchInfo();
-      setHomeInfo(data ? {
-        logoDesktop: data.images?.logo,
-        slogan: data.texts?.slogan,
-        subtitle: data.texts?.subtitle,
-        callAction: data.texts?.call_action,
-        logoMobile: data.images?.logo_mobile,
-        loginTitle: data.texts?.section_login?.title,
-        loginForgot: data.texts?.section_login?.forgot,
-        loginRegister: data.texts?.section_login?.register,
-        loginRegisterCall: data.texts?.section_login?.register_call,
-        loginCall: data.texts?.section_login?.login_call,
-      } : homeInfo);
+      setHomeInfo(
+        data
+          ? {
+              logoDesktop: data.images?.logo,
+              slogan: data.texts?.slogan,
+              subtitle: data.texts?.subtitle,
+              callAction: data.texts?.call_action,
+              logoMobile: data.images?.logo_mobile,
+              loginTitle: data.texts?.section_login?.title,
+              loginForgot: data.texts?.section_login?.forgot,
+              loginRegister: data.texts?.section_login?.register,
+              loginRegisterCall: data.texts?.section_login?.register_call,
+              loginCall: data.texts?.section_login?.login_call,
+            }
+          : homeInfo,
+      );
     };
 
     loadHomeInfo();
@@ -46,7 +51,11 @@ const Home = () => {
 
   const renderForm = () => {
     if (isPasswordResetVisible) {
-      return <PasswordResetForm setIsPasswordResetVisible={setIsPasswordResetVisible}/>;
+      return (
+        <PasswordResetForm
+          setIsPasswordResetVisible={setIsPasswordResetVisible}
+        />
+      );
     }
 
     if (isRegisterVisible) {
@@ -76,11 +85,9 @@ const Home = () => {
         logoMobile={homeInfo.logoMobile}
       />
       <Wrapper>
-        <Container>
-          {renderForm()}
-        </Container>
+        <Container>{renderForm()}</Container>
       </Wrapper>
-      <WhatsappPopUp/>
+      <WhatsappPopUp />
     </HomeContainer>
   );
 };

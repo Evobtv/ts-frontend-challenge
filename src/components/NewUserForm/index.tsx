@@ -62,6 +62,7 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
     const doPasswordsMatch = password === confirmPassword;
 
     if (isFieldEmpty) {
+      console.log(errorMessage.fillAllFields)
       setLoginMessage(errorMessage.fillAllFields);
       return false;
     }
@@ -96,7 +97,7 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
     const newUser = { email, password };
     users.push(newUser);
     localStorage.setItem('users', JSON.stringify(users));
-
+    console.log(errorMessage.userRegistered)
     setLoginMessage(errorMessage.userRegistered);
   };
 
@@ -177,7 +178,6 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
           <Button
             variant="solid"
             type="submit"
-            onClick={() => setLoginMessage('Usuário cadastrado')}
             width="100%"
           >
             Cadastrar-se

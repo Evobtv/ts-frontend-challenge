@@ -80,6 +80,7 @@ const LoginForm = ({
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={emailError}>
             <Input
+              className='animation'
               value={email}
               typeErrorMessage={emailError}
               type={'email'}
