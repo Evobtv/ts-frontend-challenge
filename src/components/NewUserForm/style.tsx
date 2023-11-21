@@ -14,10 +14,11 @@ export const Input = styled.input<InputProps>`
   
   font-family: "Lato", sans-serif;
   font-size: 1.25rem;
-  color: ${(props) => (props.typeErrorMessage ? "#F56565" : "#2d3748")};
+  color: ${({ theme, typeErrorMessage }) => 
+  typeErrorMessage ? theme.colors.errorMessage : theme.colors.baseGray};
 
   &::placeholder {
-    color: #a0aec0;
+    color: ${({ theme }) => theme.colors.lightGray};
   }
 `;
 
@@ -26,7 +27,7 @@ export const Error = styled.p`
   bottom: -1.75rem;
   
   font-size: 1rem;
-  color: #f56565;
+  color: ${({ theme }) => theme.colors.erroMessage};
 `;
 
 export const ButtonsContainer = styled.div`
@@ -43,19 +44,7 @@ export const ButtonsContainer = styled.div`
   }
 `;
 
-export const LoginButton = styled.button`
-  display: block;
-  width: 100%;
 
-  background-color: #2d3748;
-  border: 0;
-  padding: 10px 2rem;
-  
-  color: #fff;
-  font-size: 1.25rem;
-  
-  cursor: pointer;
-`;
 
 export const OptionsContainer = styled.div`
   display: flex;
@@ -71,41 +60,6 @@ export const OptionsContainer = styled.div`
   }
 `;
 
-export const New = styled.button`
-  display: block;
-
-  border: 0;
-  background-color: transparent;
-  
-  font-size: 1rem;
-  color: #2d3748;
-  
-  cursor: pointer;
-`;
-
-export const Register = styled.button`
-  display: block;
-  width: 50%;
-  
-  border: 2px solid #2d3748;
-  padding: 10px 1rem;
-  
-  background-color: transparent;
-  
-  color: #2d3748;
-  font-size: 1.25rem;
-  
-  cursor: pointer;
-
-  &:hover,
-  &:focus {
-    background-color: #efefef;
-  }
-
-  @media screen and (min-width: 728px) {
-    width: initial;
-  }
-`;
 
 export const LoginMessage = styled.p`
   display: block;
@@ -116,6 +70,6 @@ export const LoginMessage = styled.p`
 
   text-align: center;
   font-size: 2rem;
-  color: #2d3748;
+  color: ${({ theme }) => theme.colors.baseGray};
   font-weight: bold;
 `;

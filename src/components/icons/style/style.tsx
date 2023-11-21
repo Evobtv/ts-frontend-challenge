@@ -9,7 +9,7 @@ export const Icon = styled.svg.attrs({
   xmlns: "http://www.w3.org/2000/svg"
 })`
   path {
-    stroke: ${({ color }) => color || '#4A5568'};
+    stroke: ${({ theme, color }) => color || theme.colors.defaultIconColor};
     stroke-width: 2;
     stroke-linecap: round;
     stroke-linejoin: round;

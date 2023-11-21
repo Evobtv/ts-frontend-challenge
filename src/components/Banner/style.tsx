@@ -54,7 +54,7 @@ export const SubTitle = styled.p`
   z-index: 1;
   
   font-size: 2rem;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
 
   @media screen and (min-width: 728px) {
     display: block;
@@ -69,7 +69,7 @@ export const Slogan = styled.p`
   max-width: 450px;
   
   font-size: 2rem;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   font-weight: 300;
 
   @media screen and (min-width: 728px) {
@@ -88,7 +88,7 @@ export const CallAction = styled.button`
   background-color: transparent;
   
   font-size: 2rem;
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   text-align: left;
 
   @media screen and (min-width: 728px) {

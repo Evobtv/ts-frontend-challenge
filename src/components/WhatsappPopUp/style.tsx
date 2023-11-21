@@ -14,6 +14,12 @@ export const WhatsappLink = styled.a`
   box-shadow: 2px 2px 3px #999;
   z-index: 100;
 
+  transition: 300ms ease-out;
+
+  &:hover {
+    transform: scale(1.3)
+  }
+
   @media screen and (max-width: 767px) {
     width: 40px;
     height: 40px;

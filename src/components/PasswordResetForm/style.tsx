@@ -12,7 +12,8 @@ export const Input = styled.input<InputProps>`
   border: 0;
   outline: 0;
 
-  color: ${(props) => (props.typeErrorMessage ? '#F56565' : '#2d3748')};
+  color: ${({ theme, typeErrorMessage }) => 
+  typeErrorMessage ? theme.colors.errorMessage : theme.colors.baseGray};
   font-family: 'Lato', sans-serif;
   font-size: 1.25rem;
 
@@ -39,11 +40,11 @@ export const Button = styled.button`
   display: block;
   width: 100%;
 
-  background-color: #2d3748;
+  background-color: ${({ theme }) => theme.colors.baseGray};
   border: 0;
   padding: 10px 2rem;
 
-  color: #fff;
+  color: ${({ theme }) => theme.colors.white};
   font-size: 1.25rem;
 
   cursor: pointer;
@@ -51,7 +52,7 @@ export const Button = styled.button`
 
 export const Message = styled.div`
   margin-top: 20px;
-  color: #333;
+  color: ${({ theme }) => theme.colors.baseMessage};
   font-size: 16px;
 `;
 
@@ -59,19 +60,19 @@ export const ButtonReturnLogin = styled.button`
   display: block;
   width: 50%;
 
-  border: 2px solid #2d3748;
+  border: 2px solid ${({ theme }) => theme.colors.baseGray};
   padding: 10px 1rem;
 
   background-color: transparent;
 
-  color: #2d3748;
+  color: ${({ theme }) => theme.colors.baseGray};
   font-size: 1.25rem;
 
   cursor: pointer;
 
   &:hover,
   &:focus {
-    background-color: #efefef;
+    background-color: #${({ theme }) => theme.colors.semiGray};
   }
 
   @media screen and (min-width: 728px) {

@@ -3,10 +3,7 @@ import {
   Input,
   Error,
   ButtonsContainer,
-  LoginButton,
   OptionsContainer,
-  New,
-  Register,
   LoginMessage,
 } from './style';
 
@@ -18,6 +15,7 @@ import InputContainerComponent from '../InputContainerComponent';
 import EmailIconComponent from '../icons/EmailIcon';
 import PasswordIconComponent from '../icons/PasswordIcon';
 import UserIconComponent from '../icons/UserIcon';
+import Button from '../Button';
 
 type NewUserFormProps = {
   setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
@@ -150,7 +148,9 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
               onChange={(e) => updateInputValue(e, setPassword)}
               onInvalid={(e) => handleValidity(e, setPasswordError)}
             />
-            <PasswordIconComponent color={passwordError ? '#F56565' : '#4A5568'}/>
+            <PasswordIconComponent
+              color={passwordError ? '#F56565' : '#4A5568'}
+            />
           </InputContainerComponent>
           <Error>{passwordError}</Error>
         </FieldComponent>
@@ -167,22 +167,28 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
               onChange={(e) => updateInputValue(e, setConfirmPassword)}
               onInvalid={(e) => handleValidity(e, setConfirmPasswordError)}
             />
-            <PasswordIconComponent color={passwordError ? '#F56565' : '#4A5568'}/>
+            <PasswordIconComponent
+              color={passwordError ? '#F56565' : '#4A5568'}
+            />
           </InputContainerComponent>
           <Error>{confirmPasswordError}</Error>
         </FieldComponent>
         <ButtonsContainer>
-          <LoginButton
+          <Button
+            variant="solid"
             type="submit"
             onClick={() => setLoginMessage('Usuário cadastrado')}
+            width="100%"
           >
             Cadastrar-se
-          </LoginButton>
+          </Button>
         </ButtonsContainer>
       </form>
       <OptionsContainer onClick={() => setIsRegisterVisible(false)}>
-        <New>Já tem uma conta?</New>
-        <Register type="button">Acesse sua conta</Register>
+        <Button variant='filter'>Já tem uma conta?</Button>
+        <Button type="button" variant="transparent">
+          Acesse sua conta
+        </Button>
       </OptionsContainer>
 
       {<LoginMessage>{loginMessage}</LoginMessage>}

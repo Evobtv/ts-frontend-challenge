@@ -11,6 +11,7 @@ export const InputContainer = styled.label<InputContainerProps>`
   padding: 0.25rem 0;
   padding-right: 5px;
 
-  border-bottom: 2px solid #2d3748;
-  border-color: ${(props) => (props.typeErrorMessage ? '#F56565' : '#2d3748')};
+  border-bottom: 2px solid ${({ theme }) => theme.colors.baseGray};
+  border-color: ${({ theme, typeErrorMessage }) => 
+  typeErrorMessage ? theme.colors.errorMessage : theme.colors.baseGray};
 `;

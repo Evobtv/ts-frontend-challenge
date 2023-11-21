@@ -4,11 +4,8 @@ import {
   Input,
   Error,
   ButtonsContainer,
-  LoginButton,
   ForgotButton,
   OptionsContainer,
-  New,
-  Register,
   LoginMessage,
 } from './style';
 import { handleValidity } from '../utils/ValidationForm';
@@ -18,6 +15,7 @@ import TitleComponent from '../TittleComponent';
 import InputContainerComponent from '../InputContainerComponent';
 import PasswordIconComponent from '../icons/PasswordIcon';
 import UserIconComponent from '../icons/UserIcon';
+import Button from '../Button';
 
 interface LoginFormProps {
   title: string;
@@ -44,7 +42,6 @@ const LoginForm = ({
   const [passwordError, setPasswordError] = useState<string>('');
   const [loginMessage, setLoginMessage] = useState<string>('');
 
-
   const handleLogin = async () => {
     const users = [
       {
@@ -60,9 +57,10 @@ const LoginForm = ({
       if (firstResult?.success) {
         setLoginMessage('Login realizado com sucesso.');
       } else {
-        setLoginMessage('Login inválido. Por favor, verifique suas credenciais.');
+        setLoginMessage(
+          'Login inválido. Por favor, verifique suas credenciais.',
+        );
       }
-
     } catch (error) {
       console.error('Error during login:', error);
 
@@ -94,7 +92,7 @@ const LoginForm = ({
                 handleValidity(e, setEmailError)
               }
             />
-            <UserIconComponent color={emailError ? '#F56565' : '#4A5568'}/>
+            <UserIconComponent color={emailError ? '#F56565' : '#4A5568'} />
           </InputContainerComponent>
           <Error>{emailError}</Error>
         </FieldComponent>
@@ -107,26 +105,33 @@ const LoginForm = ({
               type="password"
               placeholder="Senha"
               required
-              onChange={(e) =>
-                updateInputValue(e, setPassword)
-              }
-              onInvalid={(e) =>
-                handleValidity(e, setPasswordError)
-              }
+              onChange={(e) => updateInputValue(e, setPassword)}
+              onInvalid={(e) => handleValidity(e, setPasswordError)}
             />
-            <PasswordIconComponent color={passwordError ? '#F56565' : '#4A5568'}/>
+            <PasswordIconComponent
+              color={passwordError ? '#F56565' : '#4A5568'}
+            />
           </InputContainerComponent>
           <Error>{passwordError}</Error>
           {<LoginMessage>{loginMessage}</LoginMessage>}
         </FieldComponent>
         <ButtonsContainer>
-          <ForgotButton type="button" onClick={() => setIsPasswordResetVisible(true)}>{forgot}</ForgotButton>
-          <LoginButton type="submit">{loginCall}</LoginButton>
+          <ForgotButton
+            type="button"
+            onClick={() => setIsPasswordResetVisible(true)}
+          >
+            {forgot}
+          </ForgotButton>
+          <Button variant="solid" type="submit" width="50%">
+            {loginCall}
+          </Button>
         </ButtonsContainer>
       </form>
       <OptionsContainer onClick={() => setIsRegisterVisible(true)}>
-        <New>{register}</New>
-        <Register type="button">{registerCall}</Register>
+        <Button variant='filter'>{register}</Button>
+        <Button variant="transparent" type="button">
+          {registerCall}
+        </Button>
       </OptionsContainer>
     </>
   );
