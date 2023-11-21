@@ -430,7 +430,7 @@ const UserLogin: React.FC<UserLoginProps> = ({ loginSectionInfo, logo  }) => {
             </S.SuccessMessage>
           )}
           {formStep !== 'email-sent' && formStep !== 'user-created' && (
-            <S.ButtonLinkContainer>
+            <S.ButtonLinkContainer $formStep={formStep} $flexDirection={formStep === 'sign-up' ? 'row' : 'column'}>
               <Button $variantstyle="primary" loading={loadingBt}>
                 {loginButtonText}
               </Button>
@@ -443,7 +443,7 @@ const UserLogin: React.FC<UserLoginProps> = ({ loginSectionInfo, logo  }) => {
           )}
         </S.Form>
         {formStep !== 'email-sent' && formStep !== 'forgot-password' && formStep !== 'user-created' && (
-          <S.AdditionalButtonLinkContainer $flexDirection={formStep === 'sign-up' ? 'row' : 'column'}>
+          <S.AdditionalButtonLinkContainer $formStep={formStep} $flexDirection={formStep === 'sign-up' ? 'row' : 'column'}>
             <S.Span>
               {formStep === 'login' ? loginSectionInfo.register : 'Já tem uma conta?'}
             </S.Span>

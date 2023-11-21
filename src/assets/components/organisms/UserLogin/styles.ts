@@ -59,19 +59,33 @@ export const ButtonLinkContainer = styled.div<StyledComponentProps>`
   max-width: 320px;
   width: 100%;
   margin-top: 14px;
-
-  ${({ $flexDirection }) =>
-    $flexDirection === 'row' &&
-    css`
-      flex-direction: row;
-  `}
+}
 `;
 
-export const AdditionalButtonLinkContainer = styled(ButtonLinkContainer)`
+export const AdditionalButtonLinkContainer = styled.div<StyledComponentProps>`
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   max-width: 320px;
   width: 100%;
   margin-top: 123px;
   padding-bottom: 40px;
+  ${({ $formStep }) =>
+  $formStep === 'sign-up' &&
+  css`
+    flex-direction: row;
+  `}
+
+  @media (min-width: 1280px) {
+      flex-direction: column;
+      margin: 0 auto;
+      margin-top: 52px;
+      width: 50%;
+      
+    }
+  }
+  
+  
 `;
 
 export const Link = styled.a`
@@ -160,23 +174,16 @@ export const ResponsiveContainer = styled.div<StyledComponentProps>`
       display: none;
     }
   
-    ${AdditionalButtonLinkContainer} {
-      margin: 32px auto;
-    }
-  
+   
     ${Title} {
       margin-left: unset;
       text-align: left;
+    }
   
     ${ButtonLinkContainer} {
       flex-direction: row-reverse;
     }
-  
-    ${AdditionalButtonLinkContainer} {
-      flex-direction: column;
-      width: 180px;
-    }
-  
+
     ${Span} {
       width: 100%;
     }
