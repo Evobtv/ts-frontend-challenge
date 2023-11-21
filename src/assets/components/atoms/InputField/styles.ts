@@ -1,5 +1,5 @@
 import styled, { css } from 'styled-components';
-import theme from '../../../assets/styles/themes/variables';
+import theme from '../../../styles/themes/variables';
 
 export const InputContainer = styled.div`
   display: flex;
@@ -32,7 +32,8 @@ export const Input = styled.input<{ $hasError?: boolean }>`
   position: relative;
   font-size: 1.8em;
   font-weight: 400;
-  white-space: pre-wrap; 
+  white-space: pre-wrap;
+  color: ${(props) => (props.$hasError ? theme.colors.error : 'inherit')};
 
   ${(props) =>
     props.$hasError &&
@@ -64,7 +65,7 @@ export const IconContainer = styled.div<{ $hasError?: boolean }>`
   ${(props) =>
     props.$hasError &&
     css`
-      border-bottom-color: ${theme.colors.error}; // Altera a cor da borda para vermelho em caso de erro
+      border-bottom-color: ${theme.colors.error};
     `}
 `;
 
@@ -80,7 +81,7 @@ export const Span = styled.span<{ $hasError?: boolean }>`
     height: 14px;
     line-height: 14px;
     font-weight: 400;
-    color: ${theme.colors.error};
+    color: ${(props) => (props.$hasError ? theme.colors.error : theme.colors.gray[3])};
     
 `;
 
