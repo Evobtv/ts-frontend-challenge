@@ -34,3 +34,22 @@ Aproveite p/ desenvolvê-la utilizando validações de campos e recursos que jul
 
 Nos envie o seu teste, para o e-mail (marco@evob.com.br), independentemente dos resultados alcançados dentro do prazo estipulado (1 semana)
 
+### Features
+
+- Tela de Login
+- Tela para redefinir a senha
+- Tela de Cadastro com dados salvos no localstorage
+- Responsividade para Celular
+- Popup de WhatsApp
+- Tela de página em construção
+- Validação dos Formulários
+
+## Como iniciar o projeto
+
+1. clone o repositório
+2. use o comando `npm i` na pasta raiz do projeto para baixar as dependências
+3. use o comando `npm run dev` para iniciar o projeto
+
+## Veja o projeto aqui
+
+Para acessar o projeto online acesse o link: https://ts-frontend-challenge.vercel.app/
