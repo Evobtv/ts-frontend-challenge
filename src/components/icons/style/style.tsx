@@ -1,5 +1,5 @@
 import styled from 'styled-components';
-import { IconProps } from '../types/iconTypes';
+import { IconProps } from '../../../types/globals';
 
 export const Icon = styled.svg.attrs({
   width: "20",
