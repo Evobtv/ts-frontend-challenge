@@ -72,6 +72,10 @@ export type NewUserFormProps = {
   setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
 };
 
+export type UnderConstructionProps = {
+  setIsLoggedIn: React.Dispatch<React.SetStateAction<boolean>>;
+}
+
 export type ErrorMessage = {
   fillAllFields: string;
   passwordsDontMatch: string;

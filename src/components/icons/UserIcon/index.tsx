@@ -1,4 +1,4 @@
-import { IconProps } from '../types/iconTypes';
+import { IconProps } from '../../../types/globals';
 import IconComponent from '../style/style';
 
 const UserIcon: React.FC<IconProps> = ({ color }) => {

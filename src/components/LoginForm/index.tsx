@@ -17,6 +17,7 @@ import UserIconComponent from '../icons/UserIcon';
 import Button from '../Button';
 import { LoginFormProps } from '../../types/globals';
 import InputComponent from '../InputComponent';
+import UnderConstruction from '../UnderConstruction';
 
 const LoginForm = ({
   title,
@@ -32,6 +33,7 @@ const LoginForm = ({
   const [emailError, setEmailError] = useState<string>('');
   const [passwordError, setPasswordError] = useState<string>('');
   const [loginMessage, setLoginMessage] = useState<string>('');
+  const [isLoggedIn, setIsLoggedIn] = useState<boolean>(false);
 
   const handleLogin = async () => {
     const users = [
@@ -47,6 +49,10 @@ const LoginForm = ({
 
       if (firstResult?.success) {
         setLoginMessage('Login realizado com sucesso.');
+        setTimeout(() => {
+          setIsLoggedIn(true);
+          setLoginMessage('')
+        }, 800)
       } else {
         setLoginMessage(
           'Login inválido. Por favor, verifique suas credenciais.',
@@ -66,7 +72,11 @@ const LoginForm = ({
 
   return (
     <>
-      <TitleComponent>{title}</TitleComponent>
+        {isLoggedIn ? (
+      <UnderConstruction setIsLoggedIn={setIsLoggedIn}/>
+    ) : ( 
+      <>
+       <TitleComponent>{title}</TitleComponent>
       <form method="post" onSubmit={handleSubmit}>
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={emailError}>
@@ -124,6 +134,8 @@ const LoginForm = ({
           {registerCall}
         </Button>
       </OptionsContainer>
+      </>)}
+     
     </>
   );
 };
