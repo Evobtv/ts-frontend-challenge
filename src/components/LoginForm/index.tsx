@@ -1,7 +1,6 @@
 import { useState } from 'react';
 import { loginUser } from '../../services/apiService';
 import {
-  Input,
   Error,
   ButtonsContainer,
   ForgotButton,
@@ -16,16 +15,8 @@ import InputContainerComponent from '../InputContainerComponent';
 import PasswordIconComponent from '../icons/PasswordIcon';
 import UserIconComponent from '../icons/UserIcon';
 import Button from '../Button';
-
-interface LoginFormProps {
-  title: string;
-  forgot: string;
-  register: string;
-  registerCall: string;
-  loginCall: string;
-  setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
-  setIsPasswordResetVisible: React.Dispatch<React.SetStateAction<boolean>>;
-}
+import { LoginFormProps } from '../../types/globals';
+import InputComponent from '../InputComponent';
 
 const LoginForm = ({
   title,
@@ -79,8 +70,7 @@ const LoginForm = ({
       <form method="post" onSubmit={handleSubmit}>
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={emailError}>
-            <Input
-              className='animation'
+            <InputComponent
               value={email}
               typeErrorMessage={emailError}
               type={'email'}
@@ -100,7 +90,7 @@ const LoginForm = ({
 
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={passwordError}>
-            <Input
+            <InputComponent
               value={password}
               typeErrorMessage={passwordError}
               type="password"

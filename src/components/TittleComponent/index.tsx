@@ -1,11 +1,8 @@
+import { childrenProps } from '../../types/globals';
 import { Title } from './style';
 import { FC } from 'react';
 
-interface TitleComponentProps {
-  children: React.ReactNode;
-}
-
-const TitleComponent: FC<TitleComponentProps> = ({ children }) => {
+const TitleComponent: FC<childrenProps> = ({ children }) => {
   return <Title>{children}</Title>;
 };
 

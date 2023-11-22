@@ -1,17 +1,10 @@
-interface UserCredentials {
-  email: string;
-  password: string;
-}
-
-interface LoginResult {
-  success: boolean;
-  message: string;
-}
+import { LoginResults, UserCredentials } from "../types/globals";
 
 export const loginUser = async (
   users: UserCredentials[],
-): Promise<LoginResult[]> => {
-  const loginResults: LoginResult[] = [];
+): Promise<LoginResults[]> => {
+  const loginResults: LoginResults[] = [];
+  
   const storedUsers = JSON.parse(localStorage.getItem('users') || '[]');
 
   for (const user of users) {

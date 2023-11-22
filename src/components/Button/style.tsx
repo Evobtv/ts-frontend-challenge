@@ -1,9 +1,5 @@
 import styled, { css } from 'styled-components';
-
-interface ButtonProps {
-  variant?: 'solid' | 'transparent' | 'filter';
-  width?: '50%' | '100%';
-}
+import { ButtonProps } from '../../types/globals';
 
 const Button = styled.button<ButtonProps>`
   display: block;
@@ -15,6 +11,10 @@ const Button = styled.button<ButtonProps>`
 
   @media screen and (min-width: 728px) {
     width: ${({ width }) => width || 'initial'};
+  }
+
+  @media screen and (max-width: 728px) {
+    width: 100%;
   }
 
   ${({ variant }) => {

@@ -1,5 +1,6 @@
 // src/styles/theme.ts
-import { css, DefaultTheme  } from 'styled-components';
+import { css } from 'styled-components';
+import { Theme } from '../types/globals';
 
 export const colors = {
   darkGray: '#4A5568',
@@ -48,11 +49,6 @@ export const buttonStyles = {
     }
   `,
 };
-
-export interface Theme extends DefaultTheme {
-  colors: typeof colors;
-  buttonStyles: typeof buttonStyles;
-}
 
 export const theme: Theme = {
   colors,

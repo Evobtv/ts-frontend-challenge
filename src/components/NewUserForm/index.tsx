@@ -1,6 +1,5 @@
 import { useState, useEffect } from 'react';
 import {
-  Input,
   Error,
   ButtonsContainer,
   OptionsContainer,
@@ -16,16 +15,8 @@ import EmailIconComponent from '../icons/EmailIcon';
 import PasswordIconComponent from '../icons/PasswordIcon';
 import UserIconComponent from '../icons/UserIcon';
 import Button from '../Button';
-
-type NewUserFormProps = {
-  setIsRegisterVisible: React.Dispatch<React.SetStateAction<boolean>>;
-};
-
-type ErrorMessage = {
-  fillAllFields: string;
-  passwordsDontMatch: string;
-  userRegistered: string;
-};
+import { ErrorMessage, NewUserFormProps } from '../../types/globals';
+import InputComponent from '../InputComponent';
 
 const errorMessage: ErrorMessage = {
   fillAllFields: 'Por favor, preencha todos os campos.',
@@ -107,7 +98,7 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
       <form method="post" onSubmit={handleRegistration}>
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={nameError}>
-            <Input
+            <InputComponent
               value={name}
               required
               typeErrorMessage={nameError}
@@ -122,7 +113,7 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
         </FieldComponent>
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={emailError}>
-            <Input
+            <InputComponent
               type="email"
               value={email}
               placeholder="E-mail"
@@ -138,7 +129,7 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
 
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={passwordError}>
-            <Input
+            <InputComponent
               value={password}
               type="password"
               placeholder="Senha"
@@ -157,7 +148,7 @@ const NewUserForm = ({ setIsRegisterVisible }: NewUserFormProps) => {
         </FieldComponent>
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={confirmPasswordError}>
-            <Input
+            <InputComponent
               required
               type="password"
               placeholder="Confirme sua senha"

@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import {
-  Input,
   Message,
   ButtonsContainer,
   OptionsContainer,
   Error,
 } from './style';
 import { handleValidity } from '../utils/ValidationForm';
-import { updateInputValue } from '../utils/HandleChange';
 import FieldComponent from '../FieldComponent';
 import TitleComponent from '../TittleComponent';
 import InputContainerComponent from '../InputContainerComponent';
 import EmailIcon from '../icons/EmailIcon';
 import Button from '../Button';
+import InputComponent from '../InputComponent';
 
 
 interface PasswordResetFormProps {
@@ -44,6 +43,11 @@ const PasswordResetForm = ({
       setMessage('E-mail não encontrado');
     }
   };
+  const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setEmail(e.target.value);
+    setMessage('');
+    setEmailError('');
+  };
 
   return (
     <>
@@ -51,23 +55,24 @@ const PasswordResetForm = ({
       <form method="post" onSubmit={handleResetPassword}>
         <FieldComponent>
           <InputContainerComponent typeErrorMessage={emailError}>
-            <Input
+            <InputComponent
               value={email}
               typeErrorMessage={emailError}
               type={'email'}
               placeholder="E-mail"
               required
-              onChange={(e) => updateInputValue(e, setEmail)}
+              onChange={handleEmailChange}
               onInvalid={(e) => handleValidity(e, setEmailError)}
             />
             <EmailIcon color={emailError ? '#F56565' : '#4A5568'} />
           </InputContainerComponent>
           <Error>{emailError}</Error>
-          {message && <Message>{message}</Message>}
+          
         </FieldComponent>
         <ButtonsContainer>
           <Button variant='solid' width='100%' type="submit">Redefinir senha</Button>
         </ButtonsContainer>
+        {message && <Message>{message}</Message>}
         <OptionsContainer>
           <Button 
             variant="transparent"

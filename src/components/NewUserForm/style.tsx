@@ -1,27 +1,5 @@
 import styled from "styled-components";
 
-interface InputProps {
-  typeErrorMessage: string;
-}
-
-export const Input = styled.input<InputProps>`
-  display: block;
-  width: 90%;
-
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-  
-  font-family: "Lato", sans-serif;
-  font-size: 1.25rem;
-  color: ${({ theme, typeErrorMessage }) => 
-  typeErrorMessage ? theme.colors.errorMessage : theme.colors.baseGray};
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.lightGray};
-  }
-`;
-
 export const Error = styled.p`
   position: absolute;
   bottom: -1.75rem;

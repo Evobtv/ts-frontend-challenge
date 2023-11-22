@@ -1,26 +1,5 @@
 import styled from 'styled-components';
 
-interface InputProps {
-  typeErrorMessage: string;
-}
-
-export const Input = styled.input<InputProps>`
-  display: block;
-  width: 90%;
-
-  background-color: transparent;
-  border: 0;
-  outline: 0;
-
-  color: ${({ theme, typeErrorMessage }) => 
-  typeErrorMessage ? theme.colors.errorMessage : theme.colors.baseGray};
-  font-family: 'Lato', sans-serif;
-  font-size: 1.25rem;
-
-  &::placeholder {
-    color: ${({ theme }) => theme.colors.lightGray};
-  }
-`;
 
 export const Error = styled.p`
   color: ${({ theme }) => theme.colors.erroMessage};
@@ -78,8 +57,6 @@ export const OptionsContainer = styled.div`
     margin-top: 3rem;
   }
 `;
-
-
 
 export const LoginMessage = styled.p`
   display: block;

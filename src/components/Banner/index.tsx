@@ -1,12 +1,5 @@
+import { BannerProps } from "../../types/globals";
 import { CallAction, Logo, Slogan, SubTitle, Wrapper } from "./style";
-
-interface BannerProps {
-  subtitle: string;
-  slogan: string;
-  callAction: string;
-  logoDesktop: string;
-  logoMobile: string;
-}
 
 const Banner = ({
   subtitle,

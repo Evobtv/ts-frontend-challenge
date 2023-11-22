@@ -1,11 +1,8 @@
+import { childrenProps } from '../../types/globals';
 import { Field } from './style';
 import { FC } from 'react';
 
-interface FieldComponentProps {
-  children: React.ReactNode;
-}
-
-const FieldComponent: FC<FieldComponentProps> = ({ children }) => {
+const FieldComponent: FC<childrenProps> = ({ children }) => {
   return <Field>{children}</Field>;
 };
 

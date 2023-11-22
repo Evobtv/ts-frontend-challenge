@@ -1,9 +1,5 @@
-type ErrorMsg = {
-  valueMissing: string;
-  typeMismatch: string;
-  tooShort: string;
-  tooLong: string;
-};
+import { ErrorMsg } from "../../types/globals";
+
 
 const errors: ErrorMsg = {
   valueMissing: "Este campo é obrigatório.",

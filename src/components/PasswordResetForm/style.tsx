@@ -1,10 +1,7 @@
 import styled from 'styled-components';
+import { typeErrorMessageProps } from '../../types/globals';
 
-interface InputProps {
-  typeErrorMessage: string;
-}
-
-export const Input = styled.input<InputProps>`
+export const Input = styled.input<typeErrorMessageProps>`
   display: block;
   width: 90%;
 

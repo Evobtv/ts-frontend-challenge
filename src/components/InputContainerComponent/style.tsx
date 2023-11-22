@@ -1,10 +1,7 @@
 import styled from "styled-components";
+import { typeErrorMessageProps } from "../../types/globals";
 
-interface InputContainerProps {
-  typeErrorMessage: string;
-}
-
-export const InputContainer = styled.label<InputContainerProps>`
+export const InputContainer = styled.label<typeErrorMessageProps>`
   display: flex;
   justify-content: space-between;
   
