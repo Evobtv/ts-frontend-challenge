@@ -42,7 +42,7 @@ export const loginUser = async (
       
       const data = await response.json();
 
-      if (data.ok) {
+      if (data.Ok) {
         loginResults.push({
           success: true,
           message: 'Login bem-sucedido com dados da API para ' + email,
